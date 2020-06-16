@@ -31,14 +31,29 @@
 <div v-if="picked === 'One'">
 
 
-      <label for="currency_select">Select your currency:</label>
+      <label for="currency_select">Select the currency you're converting to euros:</label>
+      <br>
       <select id="currency_select" v-model="currencyOne">
-        <option disabled value="">Select a country</option>
+        <option disabled value="">Select currency</option>
         <option v-for="(rate, currency) in AllCurrencies" :value="[currency, rate]">{{currency}}</option>
       </select>
 
       <input v-model="amount" placeholder="Enter an amount">
       <p v-if="amount">{{amount}} {{currencyOne[0]}} is worth €{{(amount / currencyOne[1]).toFixed(2)}} euros</p>
+</div>
+
+<div v-if="picked === 'Two'">
+
+
+      <label for="currency_select">Select currency you're converting euros to:</label>
+      <br>
+      <select id="currency_select" v-model="currencyOne">
+        <option disabled value="">Select currency</option>
+        <option v-for="(rate, currency) in AllCurrencies" :value="[currency, rate]">{{currency}}</option>
+      </select>
+
+      <input v-model="amount" placeholder="Enter euros amount">
+      <p v-if="amount">{{amount}} euro is worth is worth {{(amount * currencyOne[1]).toFixed(2)}} {{currencyOne[0]}}</p>
 </div>
 
 
