@@ -1,16 +1,50 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Currency Converter</title>
-    <script src="./js/bundle.js"></script>
+<head>
+  <meta charset="utf-8">
+  <title>Currency Converter</title>
+  <script src="./js/bundle.js"></script>
 
-  </head>
-  <body>
-    <div id="app">
+</head>
+<body>
+  <h1>Currency Converter</h1>
+  <div id="app">
+
+    <input type="radio" id="one" value="One" v-model="picked">
+    <label for="one">Convert currency to euros</label>
+    <br>
+    <input type="radio" id="two" value="Two" v-model="picked">
+    <label for="two">Convert euros to another currency</label>
+    <br>
+    <input type="radio" id="three" value="Three" v-model="picked">
+    <label for="one">Convert one currency to another</label>
+    <br><br>
+    <span>Picked: {{ picked }}</span>
 
 
-<p>{{AllCurrencies.rates.CAD}}</p>
+    <br><br>
+
+    <div class="converter">
+
+
+
+<div v-if="picked === 'One'">
+
+
+      <label for="currency_select">Select your currency:</label>
+      <select id="currency_select" v-model="currencyOne">
+        <option disabled value="">Select a country</option>
+        <option v-for="(rate, currency) in AllCurrencies" :value="[currency, rate]">{{currency}}</option>
+      </select>
+
+      <input v-model="amount" placeholder="Enter an amount">
+      <p v-if="amount">{{amount}} {{currencyOne[0]}} is worth €{{(amount / currencyOne[1]).toFixed(2)}} euros</p>
 </div>
-  </body>
+
+
+    </div>
+
+
+  </div>
+</body>
 </html>
