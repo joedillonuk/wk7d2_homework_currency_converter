@@ -4,9 +4,10 @@
   <meta charset="utf-8">
   <title>Currency Converter</title>
   <script src="./js/bundle.js"></script>
+  <link rel="stylesheet" href="./css/style.css">
 
 </head>
-<body>
+<body class="yellow-square">
   <h1>Currency Converter</h1>
   <div id="app">
 
@@ -31,7 +32,7 @@
 <div v-if="picked === 'One'">
 
 
-      <label for="currency_select">Select the currency you're converting to euros:</label>
+      <label for="currency_select">Select the currency you're converting to euro:</label>
       <br>
       <select id="currency_select" v-model="currencyOne">
         <option disabled value="">Select currency</option>
@@ -39,13 +40,13 @@
       </select>
 
       <input v-model="amount" placeholder="Enter an amount">
-      <p v-if="amount">{{amount}} {{currencyOne[0]}} is worth €{{(amount / currencyOne[1]).toFixed(2)}} euros</p>
+      <p v-if="amount">{{amount}} {{currencyOne[0]}} is worth €{{(amount / currencyOne[1]).toFixed(2)}} euro.</p>
 </div>
 
 <div v-if="picked === 'Two'">
 
 
-      <label for="currency_select">Select currency you're converting euros to:</label>
+      <label for="currency_select">Convert euro to:</label>
       <br>
       <select id="currency_select" v-model="currencyOne">
         <option disabled value="">Select currency</option>
@@ -53,7 +54,30 @@
       </select>
 
       <input v-model="amount" placeholder="Enter euros amount">
-      <p v-if="amount">{{amount}} euro is worth is worth {{(amount * currencyOne[1]).toFixed(2)}} {{currencyOne[0]}}</p>
+      <p v-if="amount">{{amount}} euro is worth {{(amount * currencyOne[1]).toFixed(2)}} {{currencyOne[0]}}</p>
+</div>
+
+<div v-if="picked === 'Three'">
+
+
+      <label for="currency_select">Select your currency:</label>
+      <br>
+      <select id="currency_select" v-model="currencyOne">
+        <option disabled value="">Select currency</option>
+        <option v-for="(rate, currency) in AllCurrencies" :value="[currency, rate]">{{currency}}</option>
+      </select>
+<br>
+      <label for="currency_select">Convert to:</label>
+      <br>
+      <select id="currency_select" v-model="currencyTwo">
+        <option disabled value="">Select currency</option>
+        <option v-for="(rate, currency) in AllCurrencies" :value="[currency, rate]">{{currency}}</option>
+      </select>
+<br><br>
+      <input type="number" v-model="amount" placeholder="Enter amount">
+
+
+      <p v-if="amount">{{amount}} {{currencyOne[0]}} is worth {{((amount / currencyOne[1])*(currencyTwo[1])).toFixed(2)}} {{currencyTwo[0]}}</p>
 </div>
 
 

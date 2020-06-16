@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
       AllCurrencies: {},
       amount: null,
       currencyOne: null,
+      currencyTwo: null,
       picked: null,
     },
     computed: {
